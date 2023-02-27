@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hw-generator"
+version = "0.1.0"
+description = ""
+authors = ["motherwort <32970725+motherwort@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "hw_generator"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+tabulate = "^0.9.0"
+requests = "^2.28.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
