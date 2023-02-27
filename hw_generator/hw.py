@@ -170,22 +170,15 @@ def make_tex(
     }
 
 
-def make_homework(make_pdf=False):
+def make_homework(
+    groups_filename: str,
+    problem_groups_filename: str,
+    template_name: str,
+    make_pdf=False
+):
     add_custom_latex_table_format_to_tabulate()
-    students_filename = (
-        input("Введите название файла со списком студентов: ")
-        or "students.txt"
-    )
-    problems_filename = (
-        input("Введите название файла со списком задач: ")
-        or "problems.txt"
-    )
-    template_name = (
-        input("Введите название файла .tex шаблона: ")
-        or "template.tex"
-    )
-    groups = parse_students(students_filename)
-    problem_groups = parse_problems(problems_filename)
+    groups = parse_students(groups_filename)
+    problem_groups = parse_problems(problem_groups_filename)
     with open(template_name, "r") as f:
         template = f.read()
     group_tables = make_group_tables(groups, problem_groups)
@@ -205,4 +198,26 @@ def make_homework(make_pdf=False):
 
 
 if __name__ == "__main__":
-    make_homework()
+    groups_filename = (
+        input("Введите название файла со списком студентов: ")
+        or "students.txt"
+    )
+    problem_groups_filename = (
+        input("Введите название файла со списком задач: ")
+        or "problems.txt"
+    )
+    template_name = (
+        input("Введите название файла .tex шаблона: ")
+        or "template.tex"
+    )
+    make_pdf = (
+        input("Сгенерировать pdf? ")
+        or "y"
+    ).lower()
+    make_pdf = make_pdf == "y"
+    make_homework(
+        groups_filename,
+        problem_groups_filename,
+        template_name,
+        make_pdf
+    )
